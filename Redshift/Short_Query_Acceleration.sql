@@ -1,12 +1,13 @@
-*** Short Query Acceleration (SQA) in Redshift ***
-Prioritizes short-running queries ahead of long-running queries.
-Short-running queries get executed in a dedicated space.
-Can reduce or get rid of WLM queues that are dedicated to running short queries.
-CREATE TABLE AS and SELECT statements are eligible for SQA.
-WLM by default dynamically assigns a value for the SQA maximum run time based on analysis of your cluster's workload. Alternatively, you can specify a fixed value of 1–20 seconds.
-AWS recommends keeping the dynamic setting for SQA maximum run time. 
+/*** Short Query Acceleration (SQA) in Redshift ***/
+-- Prioritizes short-running queries ahead of long-running queries.
+-- Short-running queries get executed in a dedicated space.
+-- Can reduce or get rid of WLM queues that are dedicated to running short queries.
+-- CREATE TABLE AS and SELECT statements are eligible for SQA.
+-- WLM by default dynamically assigns a value for the SQA maximum run time based on analysis of your cluster's workload. 
+-- Alternatively, you can specify a fixed value of 1–20 seconds.
+-- AWS recommends keeping the dynamic setting for SQA maximum run time. 
 
-* Monitoring SQA *
+/* Monitoring SQA */
 -- To check whether SQA is enabled, run the following query.  If the query returns a row, then SQA is enabled.
 SELECT  *
 FROM    stv_wlm_service_class_config
@@ -56,4 +57,6 @@ AND     a.final_state = 'Evicted'
 ORDER 
 BY      b.query DESC LIMIT 5;
 
-Reference: https://docs.aws.amazon.com/redshift/latest/dg/wlm-short-query-acceleration.html
+/* Reference(s) 
+https://docs.aws.amazon.com/redshift/latest/dg/wlm-short-query-acceleration.html
+*/
